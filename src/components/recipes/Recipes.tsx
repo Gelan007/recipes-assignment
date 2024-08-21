@@ -3,6 +3,8 @@ import Card from "../card/Card";
 import s from "./Recipes.module.scss";
 import {Recipe} from "../../interfaces/recipes";
 import InputGrey from "../UI/inputs/InputGrey";
+import {Link} from "react-router-dom";
+import {RECIPES_ROUTE} from "../../utils/routes/constants";
 
 type RecipesType = {
     filteredRecipes: Recipe[];
@@ -47,13 +49,14 @@ const Recipes: React.FC<RecipesType> = ({
                 </div>
                 <div className={s.cards}>
                     {filteredRecipes.map(recipe => (
-                        <Card
-                            key={recipe.idMeal}
-                            image={recipe.strMealThumb}
-                            name={recipe.strMeal}
-                            category={recipe.strCategory}
-                            area={recipe.strArea}
-                        />
+                        <Link to={`${RECIPES_ROUTE}/${recipe.idMeal}`} key={recipe.idMeal}>
+                            <Card
+                                image={recipe.strMealThumb}
+                                name={recipe.strMeal}
+                                category={recipe.strCategory}
+                                area={recipe.strArea}
+                            />
+                        </Link>
                     ))}
                 </div>
             </div>

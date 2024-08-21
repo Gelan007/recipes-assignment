@@ -2,6 +2,7 @@ import React from 'react';
 import {publicRoutes} from "../utils/routes/routes";
 import NotFound from "./notFound/NotFound";
 import {Route, Routes} from "react-router-dom";
+import RecipesContainer from "./recipes/RecipesContainer";
 
 
 const AppRouter:React.FC = () => {

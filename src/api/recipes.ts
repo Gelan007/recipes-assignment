@@ -8,4 +8,9 @@ export const recipesAPI = {
 
         return response;
     },
+    async getRecipeById(id: string) {
+        const response = await axios.get(`${baseUrl}lookup.php?i=${id}`)
+
+        return response;
+    },
 }

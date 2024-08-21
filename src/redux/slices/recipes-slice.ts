@@ -15,10 +15,23 @@ export const getRecipes = createAsyncThunk(
         }
     });
 
+export const getRecipeById = createAsyncThunk(
+    'recipes/getRecipeById',
+    async (payload: {id: string}, {rejectWithValue}) => {
+        try {
+            const response = await recipesAPI.getRecipeById(payload.id);
+
+            return {data: response.data.meals}
+        } catch (err: any) {
+            return rejectWithValue(err);
+        }
+    });
+
 const initialState = {
     isLoading: false,
     error: "" as string | null,
     recipes: [] as Recipe[],
+    currentRecipe: null as null | Recipe,
    /* currentPage: 1,
     totalPagesCount: 1*/
 }
@@ -41,14 +54,20 @@ const recipesSlice = createSlice({
             .addCase(getRecipes.fulfilled, (state, action) => {
                 state.isLoading = false;
                 state.recipes = getTransformedRecipes((Array.isArray(action.payload.data) && action.payload.data) || []);
-               /* state.totalPagesCount = action.payload.totalPagesCount
-                if(action.payload.isLoadMore) {
-                    state.users = [...state.users, ...action.payload.data.users]
-                } else {
-                    state.users = action.payload.data.users
-                }*/
             })
             .addCase(getRecipes.rejected, (state, action) => {
+                state.isLoading = false;
+                state.error = "Invalid request"
+            })
+            .addCase(getRecipeById.pending, (state) => {
+                state.isLoading = true;
+                state.error = null;
+            })
+            .addCase(getRecipeById.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.currentRecipe = getTransformedRecipes((Array.isArray(action.payload.data) && action.payload.data) || [])[0];
+            })
+            .addCase(getRecipeById.rejected, (state, action) => {
                 state.isLoading = false;
                 state.error = "Invalid request"
             });
