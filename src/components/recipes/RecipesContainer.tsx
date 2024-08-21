@@ -16,6 +16,7 @@ type RecipesContainerProps = MapStatePropsType & MapDispatchPropsType;
 const RecipesContainer: React.FC<RecipesContainerProps> = ({recipes, getRecipes}) => {
     const [filteredRecipes, setFilteredRecipes] = useState<Recipe[]>([]);
     const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+    const [searchTerm, setSearchTerm] = useState<string>('');
     const categories = Array.from(new Set(recipes.map(recipe => recipe.strCategory)));
 
     useEffect(() => {
@@ -23,17 +24,25 @@ const RecipesContainer: React.FC<RecipesContainerProps> = ({recipes, getRecipes}
     }, [getRecipes]);
 
     useEffect(() => {
-        if (selectedCategories.length === 0) {
-            setFilteredRecipes(recipes);
-        } else {
-            setFilteredRecipes(recipes.filter(recipe => selectedCategories.includes(recipe.strCategory)));
+        let filtered = recipes;
+        if (selectedCategories.length > 0) {
+            filtered = filtered.filter(recipe => selectedCategories.includes(recipe.strCategory));
         }
-    }, [recipes, selectedCategories]);
+        if (searchTerm) {
+            filtered = filtered.filter(recipe => recipe.strMeal.toLowerCase().includes(searchTerm.toLowerCase()));
+        }
+
+        setFilteredRecipes(filtered);
+    }, [recipes, selectedCategories, searchTerm]);
 
     const handleCategoryChange = (category: string) => {
         setSelectedCategories(prev =>
             prev.includes(category) ? prev.filter(cat => cat !== category) : [...prev, category]
         );
+    };
+
+    const handleSearchChange = (value: string) => {
+        setSearchTerm(value);
     };
 
     return (
@@ -42,6 +51,8 @@ const RecipesContainer: React.FC<RecipesContainerProps> = ({recipes, getRecipes}
             categories={categories}
             selectedCategories={selectedCategories}
             handleCategoryChange={handleCategoryChange}
+            handleSearchChange={handleSearchChange}
+            searchTerm={searchTerm}
         />
     );
 };

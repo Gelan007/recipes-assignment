@@ -2,22 +2,35 @@ import React from 'react';
 import Card from "../card/Card";
 import s from "./Recipes.module.scss";
 import {Recipe} from "../../interfaces/recipes";
+import InputGrey from "../UI/inputs/InputGrey";
 
 type RecipesType = {
     filteredRecipes: Recipe[];
     categories: string[];
     selectedCategories: string[];
     handleCategoryChange: (category: string) => void;
-}
+    handleSearchChange: (value: string) => void;
+    searchTerm: string;
+};
 
 const Recipes: React.FC<RecipesType> = ({
                                             filteredRecipes,
                                             categories,
                                             selectedCategories,
-                                            handleCategoryChange
+                                            handleCategoryChange,
+                                            handleSearchChange,
+                                            searchTerm
                                         }) => {
     return (
         <div className={s.recipes}>
+            <div className={s.input}>
+                <InputGrey
+                    placeholder="Search"
+                    value={searchTerm}
+                    onChange={(e) => handleSearchChange(e.target.value)}
+                    debounceTimeout={300}
+                />
+            </div>
             <div className={s.recipes__content}>
                 <div className={s.filtration}>
                     {categories.map((category, index) => (
@@ -43,7 +56,6 @@ const Recipes: React.FC<RecipesType> = ({
                         />
                     ))}
                 </div>
-                <div className={s.pagination}></div>
             </div>
         </div>
     );

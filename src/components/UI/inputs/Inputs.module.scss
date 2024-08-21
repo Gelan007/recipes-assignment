@@ -1,0 +1,34 @@
+@import "../../../styles/variables.scss";
+
+%inputGreyMain {
+  background: $light-gray;
+  border: 1px solid $input-default;
+  border-radius: 4px;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: #000000DE;
+  width: 100%;
+  font-family: inherit;
+  //outline: none;
+}
+%inputGreyPlaceholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 26px;
+  color: rgba(0, 0, 0, 0.95);
+  font-family: inherit;
+}
+
+.inputGrey {
+  @extend %inputGreyMain;
+  padding: 2px 10px;
+
+  &::placeholder {
+    @extend %inputGreyPlaceholder;
+  }
+
+  &:focus {
+    outline: 1px solid $blue;
+  }
+}
