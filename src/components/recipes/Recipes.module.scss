@@ -1,0 +1,11 @@
+.recipes {
+  display: flex;
+
+
+  &>*:not(:last-child) {
+    margin-right: 10px;
+  }
+  &>*{
+    flex: 1 1 50%;
+  }
+}
