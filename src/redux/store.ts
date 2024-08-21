@@ -1,9 +1,10 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {useDispatch} from "react-redux";
+import recipesSlice from "./slices/recipes-slice";
 
 export const store = configureStore({
     reducer: {
-
+        recipes: recipesSlice
     },
     devTools: true
 })
