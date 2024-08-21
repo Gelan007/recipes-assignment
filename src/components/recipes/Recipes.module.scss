@@ -1,5 +1,35 @@
+@import "../../styles/variables.scss";
+
 .recipes {
-  display: flex;
+  padding: 20px 2px;
+
+  &__content {
+    display: flex;
+  }
+}
+
+.filtration {
+  flex: 1 1 10%;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+
+    span {
+      font-weight: 500;
+      margin-right: 3px;
+    }
+  }
+}
+
+.cards {
+  flex: 0 0 90%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 29px;
 
 
   &>*:not(:last-child) {
