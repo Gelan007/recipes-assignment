@@ -51,6 +51,9 @@ const recipesSlice = createSlice({
                 state.selectedRecipes.push(recipe);
             }
         },
+        setCurrentRecipe: (state, action: PayloadAction<Recipe | null>) => {
+            state.currentRecipe = action.payload;
+        }
     },
     extraReducers: (builder) => {
         builder
@@ -82,6 +85,7 @@ const recipesSlice = createSlice({
 })
 
 export const {
-    toggleRecipeSelection
+    toggleRecipeSelection,
+    setCurrentRecipe
 } = recipesSlice.actions;
 export default recipesSlice.reducer;

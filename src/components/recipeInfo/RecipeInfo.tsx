@@ -3,25 +3,17 @@ import s from "./RecipeInfo.module.scss"
 import {Recipe} from "../../interfaces/recipes";
 import {Link} from "react-router-dom";
 import {RECIPES_ROUTE} from "../../utils/routes/constants";
+import GoBack from "../goBack/GoBack";
 
 type RecipeInfoProps = {
     recipe: Recipe | null
+    formattedIngredients: string[]
 }
-const RecipeInfo: React.FC<RecipeInfoProps> = ({recipe}) => {
-    const getIngredientInfo = (): string[] => {
-        if(recipe?.strIngredients) {
-            return recipe?.strIngredients.map((ingredient,i) => {
-                return `${ingredient}(${recipe?.strMeasures[i].trim()})`;
-            })
-        }
-        return [];
-    }
+const RecipeInfo: React.FC<RecipeInfoProps> = ({recipe, ...props}) => {
 
     return (
         <div className={s.recipeInfo}>
-            <Link className={s.back} to={RECIPES_ROUTE}>
-                Головна сторінка
-            </Link>
+            <div className={s.back}><GoBack/></div>
             <div className={s.recipeInfo__content}>
                 <div className={s.leftBlock}>
                     <div className={s.leftBlock__topContent}>
@@ -46,7 +38,7 @@ const RecipeInfo: React.FC<RecipeInfoProps> = ({recipe}) => {
                     <div className={s.ingredientsBlock}>
                         <h3 className={s.ingredientsBlock__title}>Інгредієнти:</h3>
                         <ul className={s.ingredientsBlock__ingredients}>
-                            {getIngredientInfo().map(info => (
+                            {props.formattedIngredients.map(info => (
                                 <li key={s.rightBlock__ingredients__item}>{info}</li>
                             ))}
                         </ul>

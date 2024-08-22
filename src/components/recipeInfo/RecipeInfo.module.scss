@@ -15,16 +15,7 @@
 }
 
 .back {
-  display: block;
   margin-bottom: 15px;
-  text-decoration: underline;
-  color: $blue;
-  opacity: 0.5;
-
-  &:hover {
-    opacity: 0.8;
-    cursor: pointer;
-  }
 }
 
 .leftBlock {

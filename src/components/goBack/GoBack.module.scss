@@ -1,0 +1,13 @@
+@import "../../styles/variables.scss";
+
+.back {
+  display: block;
+  text-decoration: underline;
+  color: $blue;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+}

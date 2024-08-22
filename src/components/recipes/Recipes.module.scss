@@ -52,7 +52,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: auto;
-  grid-gap: 29px;
+  grid-gap: 20px;
 
 
   &>*:not(:last-child) {
