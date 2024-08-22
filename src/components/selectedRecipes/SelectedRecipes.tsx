@@ -24,7 +24,7 @@ const SelectedRecipes:React.FC<SelectedRecipesProps> = ({recipes, ...props}) => 
                     />
                 ))}
             </div>
-            <div className={s.ingredients}>
+            <div className={recipes.length > 0 ? s.ingredients : s.hidden}>
                 <h3 className={s.ingredients__title}>
                     Інгредієнти:
                 </h3>
@@ -36,7 +36,7 @@ const SelectedRecipes:React.FC<SelectedRecipesProps> = ({recipes, ...props}) => 
                     ))}
                 </ul>
             </div>
-            <div className={s.instructions}>
+            <div className={recipes.length > 0 ? s.instructions : s.hidden}>
                 <h3 className={s.instructions__title}>Інструкції:</h3>
                 <div className={s.instructions__body}>
                     {recipes.map((recipe, index) => (
@@ -46,6 +46,9 @@ const SelectedRecipes:React.FC<SelectedRecipesProps> = ({recipes, ...props}) => 
                     ))}
                 </div>
             </div>
+            {recipes.length <= 0 &&
+                <div className={s.message}>Немає обраних рецептів</div>
+            }
         </div>
     );
 };

@@ -41,7 +41,7 @@ const RecipeInfoContainer: React.FC<RecipesContainerProps> = (props) => {
     return (
         <>
             {
-                props.currentRecipe && props.recipes ?
+                (props.currentRecipe && props.recipes.length > 0) ?
                     <RecipeInfo recipe={props.currentRecipe}
                                 recipes={props.recipes}
                                 formattedIngredients={getIngredientInfoWithMeasurements(props.currentRecipe)}

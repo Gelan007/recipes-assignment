@@ -4,6 +4,7 @@ import {Recipe} from "../../interfaces/recipes";
 import {AppRootStateType} from "../../redux/store";
 import {connect} from "react-redux";
 import {getRecipes} from "../../redux/slices/recipes-slice";
+import {TailSpin} from "react-loader-spinner";
 
 type MapStatePropsType = {
     recipes: Recipe[];
@@ -46,14 +47,27 @@ const RecipesContainer: React.FC<RecipesContainerProps> = ({recipes, getRecipes}
     };
 
     return (
-        <Recipes
-            filteredRecipes={filteredRecipes}
-            categories={categories}
-            selectedCategories={selectedCategories}
-            handleCategoryChange={handleCategoryChange}
-            handleSearchChange={handleSearchChange}
-            searchTerm={searchTerm}
-        />
+        <>
+            {recipes.length > 0 ?
+                <Recipes
+                    filteredRecipes={filteredRecipes}
+                    categories={categories}
+                    selectedCategories={selectedCategories}
+                    handleCategoryChange={handleCategoryChange}
+                    handleSearchChange={handleSearchChange}
+                    searchTerm={searchTerm}
+                />
+                :
+                <TailSpin
+                    height="180"
+                    width="180"
+                    radius="9"
+                    color="green"
+                    ariaLabel="three-dots-loading"
+                />
+
+            }
+        </>
     );
 };
 

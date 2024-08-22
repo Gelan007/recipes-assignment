@@ -51,16 +51,21 @@ const Recipes: React.FC<RecipesType> = ({
                         </div>
                     ))}
                 </div>
-                <div className={s.cards}>
-                    {filteredRecipes.map(recipe => (
-                        <Link to={`${RECIPES_ROUTE}/${recipe.idMeal}`} key={recipe.idMeal}>
-                            <CardContainer
-                                recipe={recipe}
-                                isCardSelectionPossibility={true}
-                            />
-                        </Link>
-                    ))}
-                </div>
+                {filteredRecipes.length > 0 ?
+                    <div className={s.cards}>
+                        {filteredRecipes.map(recipe => (
+                            <Link to={`${RECIPES_ROUTE}/${recipe.idMeal}`} key={recipe.idMeal}>
+                                <CardContainer
+                                    recipe={recipe}
+                                    isCardSelectionPossibility={true}
+                                />
+                            </Link>
+                        ))}
+                    </div>
+                    :
+                    <div className={s.message}>Нічого не знайдено</div>
+                }
+
             </div>
         </div>
     );

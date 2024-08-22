@@ -56,3 +56,12 @@
     }
   }
 }
+
+.hidden {
+  display: none;
+}
+.message {
+  text-align: center;
+  font-size: 25px;
+  color: $hoverRed
+}
