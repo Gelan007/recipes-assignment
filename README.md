@@ -1,46 +1,43 @@
-# Getting Started with Create React App
+# Recipe Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This is a test assignment related to recipes. The application offers several functionalities, including displaying all available recipes, viewing detailed information about a single recipe, filtering recipes by category, and selecting multiple recipes to aggregate their ingredients. The selected recipes are stored using `sessionStorage`, ensuring that the selection persists even after the page is reloaded.
 
-In the project directory, you can run:
+## Features
 
-### `yarn start`
+- **Display of Recipes**: View all available recipes with basic information including a photo, name, category, and place of origin. The recipes are presented in a card format for easy browsing.
+  
+- **Single Recipe View**: Access detailed information about a specific recipe. This includes all the data retrieved from TheMealDB API, such as ingredients, measurements, and cooking instructions.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- **Recipe Filtering by Category**: Filter the list of recipes based on their category, allowing users to quickly find the type of recipe they are interested in.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **Pagination**: The application implements pagination for navigating through the list of recipes. The pagination setup displays pages `1` to `7`, followed by an ellipsis (`...`) if there are more than `10` pages, with navigation arrows to change pages.
 
-### `yarn test`
+- **Debounced Search**: Users can search for recipes using a search input with a debounce mechanism to reduce unnecessary API calls and improve performance.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **Recipe Selection and Ingredient Aggregation**: Users can select multiple recipes, and the application will aggregate and display a combined list of ingredients needed to prepare them. This feature also shows basic information about the selected recipes, such as their names and categories.
 
-### `yarn build`
+- **Persistent Selection with `sessionStorage`**: The selected recipes are stored in `sessionStorage`, ensuring that the selection remains intact even after the page is reloaded.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Technologies Used
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **React**: A JavaScript library for building user interfaces, used to manage the UI components of the application.
+  
+- **TypeScript**: A typed superset of JavaScript that adds static types, enhancing code quality and maintainability.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- **Redux Toolkit**: A toolset for efficient Redux development, used to manage the application's global state.
 
-### `yarn eject`
+- **SCSS**: A preprocessor scripting language that is interpreted or compiled into CSS, used for styling the components.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- **React Paginate**: A library used to implement pagination in the application.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- **TheMealDB API**: An API that provides meal recipes, used as the data source for the application.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Pages
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+1. **All Recipes Page**: Displays a list of all available recipes in a card format, including a photo, name, category, and place of origin.
 
-## Learn More
+2. **Single Recipe Page**: Shows detailed information for a selected recipe, including ingredients, measurements, and instructions.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+3. **Ingredients Page**: Displays cards for selected recipes along with a combined list of their ingredients and the instructions for cooking.
