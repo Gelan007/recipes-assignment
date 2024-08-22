@@ -1,8 +1,7 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import {AppRootStateType} from "../../redux/store";
 import {connect} from "react-redux";
 import {Recipe} from "../../interfaces/recipes";
-import {PayloadAction} from "@reduxjs/toolkit";
 import {toggleRecipeSelection} from "../../redux/slices/recipes-slice";
 import Card from "./Card";
 
@@ -24,6 +23,7 @@ const CardContainer:React.FC<RecipesContainerProps> = (props) => {
         e.preventDefault();
         props.toggleRecipeSelection(props.recipe);
     };
+
     return (
         <Card image={props.recipe.strMealThumb} area={props.recipe.strArea}
               name={props.recipe.strMeal} category={props.recipe.strCategory}

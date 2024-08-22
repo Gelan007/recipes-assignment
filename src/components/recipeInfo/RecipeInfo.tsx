@@ -1,4 +1,4 @@
-import React, {ReactElement, useState} from 'react';
+import React from 'react';
 import s from "./RecipeInfo.module.scss"
 import {Recipe} from "../../interfaces/recipes";
 import GoBack from "../goBack/GoBack";
@@ -56,7 +56,7 @@ const RecipeInfo: React.FC<RecipeInfoProps> = ({recipe, ...props}) => {
                         </ul>
                     </div>
                     <div className={s.instructionsBlock}>
-                        <h3 className={s.instructionsBlock__title}>Інструкції:</h3>
+                        <h3 className={s.instructionsBlock__title}>Інструкція:</h3>
                         <div className={s.instructionsBlock__description}>{recipe?.strInstructions}</div>
                     </div>
                 </div>

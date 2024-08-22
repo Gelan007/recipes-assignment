@@ -6,8 +6,7 @@ import {connect} from "react-redux";
 import {Recipe} from "../../interfaces/recipes";
 import {getRecipeById, getRecipes, setCurrentRecipe} from "../../redux/slices/recipes-slice";
 import {getIngredientInfoWithMeasurements} from "../../utils/recipes/ingredients";
-import { TailSpin } from 'react-loader-spinner'
-import recipes from "../recipes/Recipes";
+import { Rings } from 'react-loader-spinner'
 
 type MapStatePropsType = {
     currentRecipe: Recipe | null;
@@ -48,13 +47,16 @@ const RecipeInfoContainer: React.FC<RecipesContainerProps> = (props) => {
                                 handlePageClick={handlePageClick}
                     />
                     :
-                    <TailSpin
-                        height="80"
-                        width="80"
-                        radius="9"
-                        color="green"
-                        ariaLabel="three-dots-loading"
-                    />
+                    <div style={{display: "flex", justifyContent: "center", marginTop: "200px"}}>
+                        <Rings
+                            height="150"
+                            width="150"
+                            radius="9"
+                            color="green"
+                            ariaLabel="three-dots-loading"
+                        />
+                    </div>
+
             }
         </>
     );

@@ -1,5 +1,4 @@
 import React from 'react';
-import Card from "../card/Card";
 import s from "./Recipes.module.scss";
 import {Recipe} from "../../interfaces/recipes";
 import InputGrey from "../UI/inputs/InputGrey";

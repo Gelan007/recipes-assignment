@@ -1,4 +1,4 @@
-import React, {ChangeEvent, memo} from 'react';
+import React from 'react';
 import s from "./Card.module.scss"
 import defaultImage from "../../assets/images/defaultImage.png"
 import closeImage from "../../assets/images/close.png"
@@ -15,12 +15,12 @@ type CardProps = {
 }
 
 const Card: React.FC<CardProps> = (props) => {
-
     const handleToggleSelection = (e:React.MouseEvent<HTMLDivElement, MouseEvent>) => {
         if(props.handleToggleSelection) {
             props.handleToggleSelection(e);
         }
     }
+
     return (
         <div className={s.card}>
             <div className={s.photo}>

@@ -4,7 +4,7 @@ import {Recipe} from "../../interfaces/recipes";
 import {AppRootStateType} from "../../redux/store";
 import {connect} from "react-redux";
 import {getRecipes} from "../../redux/slices/recipes-slice";
-import {TailSpin} from "react-loader-spinner";
+import {Rings} from "react-loader-spinner";
 
 type MapStatePropsType = {
     recipes: Recipe[];
@@ -32,7 +32,6 @@ const RecipesContainer: React.FC<RecipesContainerProps> = ({recipes, getRecipes}
         if (searchTerm) {
             filtered = filtered.filter(recipe => recipe.strMeal.toLowerCase().includes(searchTerm.toLowerCase()));
         }
-
         setFilteredRecipes(filtered);
     }, [recipes, selectedCategories, searchTerm]);
 
@@ -58,14 +57,15 @@ const RecipesContainer: React.FC<RecipesContainerProps> = ({recipes, getRecipes}
                     searchTerm={searchTerm}
                 />
                 :
-                <TailSpin
-                    height="180"
-                    width="180"
-                    radius="9"
-                    color="green"
-                    ariaLabel="three-dots-loading"
-                />
-
+                <div style={{display: "flex", justifyContent: "center", marginTop: "200px"}}>
+                    <Rings
+                        height="180"
+                        width="180"
+                        radius="9"
+                        color="green"
+                        ariaLabel="three-dots-loading"
+                    />
+                </div>
             }
         </>
     );

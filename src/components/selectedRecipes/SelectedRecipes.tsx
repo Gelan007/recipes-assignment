@@ -2,8 +2,6 @@ import React from 'react';
 import s from "./SelectedRecipes.module.scss";
 import {Recipe} from "../../interfaces/recipes";
 import CardContainer from "../card/CardContainer";
-import {Link} from "react-router-dom";
-import {RECIPES_ROUTE} from "../../utils/routes/constants";
 import GoBack from "../goBack/GoBack";
 
 type SelectedRecipesProps = {
