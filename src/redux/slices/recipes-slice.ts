@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {recipesAPI} from "../../api/recipes";
 import {Recipe} from "../../interfaces/recipes";
 import {getTransformedRecipes} from "../utils/recipes";
@@ -32,6 +32,7 @@ const initialState = {
     error: "" as string | null,
     recipes: [] as Recipe[],
     currentRecipe: null as null | Recipe,
+    selectedRecipes: [] as Recipe[]
    /* currentPage: 1,
     totalPagesCount: 1*/
 }
@@ -41,9 +42,15 @@ const recipesSlice = createSlice({
     name: "recipes",
     initialState,
     reducers: {
-        /*setCurrentPage: (state, action) => {
-            state.currentPage = action.payload
-        }*/
+        toggleRecipeSelection: (state, action: PayloadAction<Recipe>) => {
+            const recipe = action.payload;
+            const isSelected = state.selectedRecipes.some(r => r.idMeal === recipe.idMeal);
+            if (isSelected) {
+                state.selectedRecipes = state.selectedRecipes.filter(r => r.idMeal !== recipe.idMeal);
+            } else {
+                state.selectedRecipes.push(recipe);
+            }
+        },
     },
     extraReducers: (builder) => {
         builder
@@ -75,6 +82,6 @@ const recipesSlice = createSlice({
 })
 
 export const {
-
+    toggleRecipeSelection
 } = recipesSlice.actions;
 export default recipesSlice.reducer;
