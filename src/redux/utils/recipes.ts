@@ -28,3 +28,12 @@ export const getTransformedRecipes = (recipes: any[]): Recipe[] => {
         };
     });
 };
+
+export const saveSelectedRecipesToSessionStorage = (selectedRecipes: Recipe[]) => {
+    sessionStorage.setItem('selectedRecipes', JSON.stringify(selectedRecipes));
+};
+
+export const loadSelectedRecipesFromSessionStorage = (): Recipe[] => {
+    const data = sessionStorage.getItem('selectedRecipes');
+    return data ? JSON.parse(data) : [];
+};

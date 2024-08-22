@@ -1,7 +1,11 @@
 import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {recipesAPI} from "../../api/recipes";
 import {Recipe} from "../../interfaces/recipes";
-import {getTransformedRecipes} from "../utils/recipes";
+import {
+    getTransformedRecipes,
+    loadSelectedRecipesFromSessionStorage,
+    saveSelectedRecipesToSessionStorage
+} from "../utils/recipes";
 
 export const getRecipes = createAsyncThunk(
     'recipes/getRecipes',
@@ -32,9 +36,7 @@ const initialState = {
     error: "" as string | null,
     recipes: [] as Recipe[],
     currentRecipe: null as null | Recipe,
-    selectedRecipes: [] as Recipe[]
-   /* currentPage: 1,
-    totalPagesCount: 1*/
+    selectedRecipes: loadSelectedRecipesFromSessionStorage() as Recipe[]
 }
 export type RecipesInitialStateType = typeof initialState
 
@@ -50,6 +52,7 @@ const recipesSlice = createSlice({
             } else {
                 state.selectedRecipes.push(recipe);
             }
+            saveSelectedRecipesToSessionStorage(state.selectedRecipes);
         },
         setCurrentRecipe: (state, action: PayloadAction<Recipe | null>) => {
             state.currentRecipe = action.payload;
