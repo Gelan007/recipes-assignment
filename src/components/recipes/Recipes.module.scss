@@ -8,11 +8,28 @@
   }
 }
 
-.input {
-  width: 400px;
+.topBlock {
+  display: flex;
+  align-items: center;
   margin-bottom: 10px;
 }
 
+.input {
+  width: 400px;
+  display: flex;
+}
+
+.selectedRecipes {
+  display: block;
+  margin-left: 20px;
+  font-weight: 400;
+  font-size: 16px;
+  color: $blue;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
 
 .filtration {
   flex: 1 1 10%;

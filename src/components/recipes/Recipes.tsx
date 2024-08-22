@@ -4,7 +4,7 @@ import s from "./Recipes.module.scss";
 import {Recipe} from "../../interfaces/recipes";
 import InputGrey from "../UI/inputs/InputGrey";
 import {Link} from "react-router-dom";
-import {RECIPES_ROUTE} from "../../utils/routes/constants";
+import {RECIPES_ROUTE, SELECTED_RECIPES_ROUTE} from "../../utils/routes/constants";
 
 type RecipesType = {
     filteredRecipes: Recipe[];
@@ -25,13 +25,16 @@ const Recipes: React.FC<RecipesType> = ({
                                         }) => {
     return (
         <div className={s.recipes}>
-            <div className={s.input}>
-                <InputGrey
-                    placeholder="Search"
-                    value={searchTerm}
-                    onChange={(e) => handleSearchChange(e.target.value)}
-                    debounceTimeout={300}
-                />
+            <div className={s.topBlock}>
+                <div className={s.input}>
+                    <InputGrey
+                        placeholder="Search"
+                        value={searchTerm}
+                        onChange={(e) => handleSearchChange(e.target.value)}
+                        debounceTimeout={300}
+                    />
+                </div>
+                <Link className={s.selectedRecipes} to={SELECTED_RECIPES_ROUTE}>Обрані рецепти</Link>
             </div>
             <div className={s.recipes__content}>
                 <div className={s.filtration}>
