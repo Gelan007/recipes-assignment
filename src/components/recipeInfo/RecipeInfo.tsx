@@ -1,16 +1,16 @@
-import React from 'react';
+import React, {ReactElement, useState} from 'react';
 import s from "./RecipeInfo.module.scss"
 import {Recipe} from "../../interfaces/recipes";
-import {Link} from "react-router-dom";
-import {RECIPES_ROUTE} from "../../utils/routes/constants";
 import GoBack from "../goBack/GoBack";
+import ReactPaginate from 'react-paginate';
 
 type RecipeInfoProps = {
+    recipes: Recipe[]
     recipe: Recipe | null
     formattedIngredients: string[]
+    handlePageClick: (pageNumber: number) => void
 }
 const RecipeInfo: React.FC<RecipeInfoProps> = ({recipe, ...props}) => {
-
     return (
         <div className={s.recipeInfo}>
             <div className={s.back}><GoBack/></div>
@@ -25,7 +25,19 @@ const RecipeInfo: React.FC<RecipeInfoProps> = ({recipe, ...props}) => {
                     <div className={s.photo}>
                         <img src={recipe?.strMealThumb} alt="meal"/>
                     </div>
-                    <div className={s.pagination}></div>
+                    <div className={s.paginationBlock}>
+                        <ReactPaginate
+                            containerClassName={s.pagination}
+                            pageClassName={s.pageItem}
+                            activeClassName={s.active}
+                            onPageChange={(e) => props.handlePageClick(e.selected)}
+                            pageCount={props.recipes.length}
+                            pageRangeDisplayed={7}
+                            breakLabel="..."
+                            previousLabel="<"
+                            nextLabel=">"
+                        />
+                    </div>
                 </div>
                 <div className={s.rightBlock}>
                     <h3 className={s.category}><span>Категорія:</span> {recipe?.strCategory}</h3>

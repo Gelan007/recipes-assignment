@@ -6,7 +6,6 @@
   font-weight: 500;
 }
 
-
 .recipeInfo {
   padding: 15px 2px 5px;
   &__content {
@@ -84,5 +83,44 @@
   &__title {
     margin: 15px 0 4px 0;
     @extend %title;
+  }
+}
+
+
+.paginationBlock {
+  margin-top: 5px;
+}
+.pagination {
+  list-style: none;
+
+  display: flex;
+  align-items: center;
+  margin-top: 2px;
+  cursor: pointer;
+}
+
+.pageItem {
+  font-size: 18px;
+  list-style: none;
+  width: 25px;
+  height: 25px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2px;
+
+  &:hover {
+    background: $lightBlue;
+    border-radius: 10px;
+  }
+}
+
+.active {
+  background-color: $red;
+  border-radius: 10px;
+
+  &:hover {
+    background: $red;
   }
 }
